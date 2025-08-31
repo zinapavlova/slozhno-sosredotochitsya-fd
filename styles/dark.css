@@ -9,21 +9,33 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
-  --bg-image: url("../images/cover-image-dark.png");
+  --accent-color: #FF0070;
+  --title-shadow: #ff0070;
+  --bg-image: url(../images/cover-image-dark.png);
   --bg-color: #000028;
-  --header-title: #db00ff;
-  --header-title-shadow: 4px 4px 0px #ff0070;
-  --header-text: #ff0070;
-  --header-text-decor: #ff0070;
-  --header-REC: #ff0070;
-  --header-button: #ff0070;
-  --header-button-border: 1px #ff0070 solid;
-  --main-title: #ff0070;
-  --main-text: #f1b2ce;
-  --main-title-decor: #000028;
-  --footer-title: #db00ff;
-  --button-hover: 1px #ff007066 solid;
-  --button-focus: 1px #FF0070 solid;
-  --header-visibility-rec: flex;
-  --link-hover: 1px #FF007066 solid;
+  --text-color: #F1B2CE;
+  --text-color-buttom: #ff0070;
+  --title-color: #DB00FF;
+  --subtitle-color: #000028;
+  --subtitle-color_section: #FF0070;
+  --decorated-zone-hover: rgba(255, 0, 112, 0.4);
+  --decorated: #FF0070;
 }
+
+.theme-dark .rec {
+  display: block;
+}
+
+.theme-auto .rec {
+  display: block;
+}
+
+/*.theme-dark {
+  --accent-color: #ff0070;
+  --title-shadow: #ff0070;
+  --bg-image: url("../images/cover-image-dark.png");
+}*/
+
+/*.theme-dark .header__theme-menu-button {
+  color: var(--accent-color);
+}*/

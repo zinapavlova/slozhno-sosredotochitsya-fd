@@ -9,40 +9,63 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
-  --bg-image: url("../images/cover-image-light.png");
-  --bg-color: #fff1f7;
-  --main-text: #353430;
-  --header-title-shadow: 4px 4px 0px #ff8dcb;
-  --header-title: #ffc2e6;
-  --main-title-decor: #353430;
-  --header-text-decor: #ff8dcb;
-  --header-text: #353430;
-  --main-title: #ff8dcb;
-  --header-button-border: 1px #353430 solid;
-  --header-button: #353430;
-  --footer-title: #ffc2e6;
-  --button-hover: 1px #32312d66 solid;
-  --button-focus: 1px #353430 solid;
-  --link-hover: 1px #353430 solid;
-  --header-visibility-rec: none;
+  --accent-color: #FF8DCB;
+  --title-shadow:#FF8DCB;
+  --bg-image: url(../images/cover-image-light.png);
+  --bg-color: #FFF1F7;
+  --text-color: #353430;
+  --text-color-buttom: #353430;
+  --title-color: #FFC2E6;
+  --subtitle-color: #353430;
+  --subtitle-color_section: #353430;
+  --decorated-zone-hover: rgba(50, 49, 45, 0.4);
+  --decorated: #353430;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg-image: url("../images/cover-image-light.png");
-    --main-text: #353430;
-    --button-hover: 1px #32312d66 solid;
-    --button-focus: 1px #353430 solid;
-    --header-title-shadow: 4px 4px 0px #ff8dcb;
-    --header-title: #ffc2e6;
-    --main-title-decor: #353430;
-    --header-text-decor: #ff8dcb;
-    --header-text: #353430;
-    --main-title: #ff8dcb;
-    --header-button-border: 1px #353430 solid;
-    --header-button: #353430;
-    --footer-title: #ffc2e6;
-    --header-visibility-rec: none;
-    --link-hover: 1px #353430 solid;
+    --accent-color: #FF8DCB;
+    --title-shadow:#FF8DCB;
+    --bg-image: url(../images/cover-image-light.png);
+    --bg-color: #FFF1F7;
+    --text-color: #353430;
+    --text-color-buttom: #353430;
+    --title-color: #FFC2E6;
+    --subtitle-color: #353430;
+    --subtitle-color_section: #353430;
+    --decorated-zone-hover: rgba(50, 49, 45, 0.4);
+    --decorated: #353430;
   }
 }
+
+.rec {
+  display: none;
+}
+
+/*.decorated-zone::before {
+  border-top: 1px solid var(--decorated);
+  border-right: 1px solid var(--decorated);
+}
+.decorated-zone::after {
+  border-bottom: 1px solid var(--decorated);
+  border-left: 1px solid var(--decorated);
+}
+.rec {
+  display: none;
+}
+
+.header__theme-menu-button {
+  color: var(--text-color-buttom);
+}
+.header__theme-menu-button_active {
+  outline: 1px solid var(--decorated);
+}
+.header__theme-menu-button:focus-visible {
+  border-block-end: 1px solid var(--decorated);
+}*/
+/*.section-title {
+  color: var(--subtitle-color_section);
+}
+.section-subtitle {
+  color: var(--subtitle-color);
+} */

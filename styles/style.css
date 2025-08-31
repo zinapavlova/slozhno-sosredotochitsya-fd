@@ -1,515 +1,414 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
-/* Общие стили страницы */
 .page {
-  /* Сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  /* сохраните в разметке и стилях класс page у тега body.
+  Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  background-color: var(--bg-color);
   background-image: var(--bg-image);
-  color: var(--main-text);
-  font-family: var(--main-font, "PT Sans", "Arial", sans-serif);
-  max-width: 1024px;
-  margin: auto;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  font-family: var(--main-font-family);
+  color: var(--text-color);
+  font-size: var(--main-font-size);
 }
 
-/* Стили для декоративных элементов (угловые рамки) */
-.decorated-zone {
-  position: relative;
-}
-
-/* Правый верхний угол */
-.decorated-zone::before {
-  content: "";
-  width: 25px;
-  height: 25px;
-  border-top: var(--header-button-border);
-  border-right: var(--header-button-border);
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 20px;
-}
-
-/* Левый нижний угол */
-.decorated-zone::after {
-  content: "";
-  width: 25px;
-  height: 25px;
-  border-bottom: var(--header-button-border);
-  border-left: var(--header-button-border);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 20px;
-}
-
-/* Стили для шапки сайта */
 .header {
   display: grid;
-  grid-template-rows: 1fr auto 1fr;
-  height: 100vh;
-  min-height: 668px;
+  position: relative;
+  grid-template-columns: 1fr;
+  grid-template-rows: 10px 1fr min-content 1fr 10px;
+  padding: 10px;
+  block-size: max(668px, 100vh); /* new2 */
 }
 
-/* Стили для элемента REC в шапке */
-.header__rec {
-  display: var(--header-visibility-rec);
-  position: absolute;
-  align-items: center;
-  margin: 20px 29px 0 0;
-  top: 0;
-  right: 0;
-  gap: 10px;
-  font-size: var(--main-text-size);
-  line-height: 25px;
-  color: var(--header-REC);
-}
-
-/* Круглый элемент рядом с REC */
-.header__rec::after {
+.decorated-zone::after,
+.decorated-zone::before {
   content: "";
-  width: 10px;
-  height: 10px;
-  display: block;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+}
+
+.decorated-zone::before {
+  top: 10px;
+  right: 10px;
+  border-top: 1px solid var(--decorated);
+  border-right: 1px solid var(--decorated);
+}
+
+.decorated-zone::after {
+  bottom: 10px;
+  left: 10px;
+  border-bottom: 1px solid var(--decorated);
+  border-left: 1px solid var(--decorated);
+}
+
+.rec {
+  position: absolute;
+  display: inline-block;
+  text-transform: uppercase;
+  top: 10px;
+  right: 10px;
+  color: var(--accent-color);
+  font-size: var(--main-font-size);
+  line-height: 25px;
+  font-weight: 400;
+}
+
+.rec::after {
+  display: inline-block;
+  content: "";
   border-radius: 50%;
-  inline-size: 0.5rem;
-  block-size: 0.5rem;
-  background-color: var(--header-REC);
-  box-shadow: 0 0 4px 2px var(--header-REC);
+  background-color: var(--accent-color);
+  box-shadow: 0px 0px 4px 2px var(--accent-color);
+  inline-size: 9px;
+  block-size: 9px;
+  margin-inline-start: 10px;
+  margin-inline-end: 9px;
 }
 
-/* Стили для меню темы */
 .header__theme-menu {
-  grid-row: 1;
-  justify-self: center;
+  grid-row: 2 / 3;
+  justify-self: end;
+  margin-top: 53px; /* new */
 }
 
-/* Список кнопок меню */
 .header__theme-menu-list {
-  list-style-type: none;
   display: flex;
+  flex-direction: column;
   gap: 10px;
-  margin-top: 20px;
 }
 
-/* Кнопки меню */
 .header__theme-menu-button {
-  border: var(--header-button-border);
-  height: 26px;
-  width: 70px;
-  background: none;
-  border: none;
-  color: var(--header-button);
-  font-weight: var(--main-text-weight);
-  font-size: var(--main-text-size);
+  color: var(--text-color-buttom);
+  font-size: var(--main-font-size);
+  font-family: var(--main-font-family);
   line-height: 18px;
-  text-align: center;
+  font-weight: 400;
   text-transform: lowercase;
+  background-color: transparent;
+  border: 0;
+  padding: 1.5px 13px;
   cursor: pointer;
+  height: 26px;
 }
 
-/* Активная кнопка меню */
 .header__theme-menu-button_active {
-  border: var(--header-button-border);
+  outline: 1px solid var(--decorated);
   pointer-events: none;
 }
 
-/* Ховер-эффект для кнопок */
 .header__theme-menu-button:hover {
-  border: var(--button-hover);
+  outline: 1px solid var(--decorated-zone-hover);
 }
 
-/* Фокус-эффект для кнопок */
 .header__theme-menu-button:focus {
   outline: none;
-  border: none;
-  border-bottom: var(--button-focus);
 }
 
-/* Стили для основного заголовка */
-.heading__title {
-  display: grid;
-  grid-template-rows: repeat(auto-fill, min-content);
+.header__theme-menu-button:focus-visible {
+  border-block-end: 1px solid var(--decorated);
 }
 
-/* Контейнер для заголовка */
-.heading__content {
-  grid-row: 2;
+.header__title {
+  grid-row: 3 / 4;
   justify-self: start;
+  color: var(--title-color);
+  font-size: var(--main-font-size-title);
+  font-weight: 700;
+  line-height: 83%;
+  text-shadow: 4px 4px 0 var(--title-shadow);
+  margin-block-start: 65px;
+  /*block-size: 180px;  его возможно нужно добавить */
 }
 
-/* Главный заголовок h1 */
-h1 {
-  font-size: var(--de-text-size);
-  text-shadow: var(--header-title-shadow);
-  color: var(--header-title);
-  font-weight: var(--main-text-weight-bold);
-  line-height: 129.53px;
+.header__description {
+  grid-row: 4 / 5;
+  font-size: inherit;
+  color: var(--bg-color);
+  font-weight: 700;
+  line-height: 23.4px;
+  height: min-content;
+  max-inline-size: max(50% 355px);
+  margin: 55px 0px 56px 0px;
 }
 
-/* Контейнер для подзаголовка */
-.heading__title-content {
-  grid-row: 3;
-  justify-self: end;
-  align-self: center;
-  margin: 0 20px 20px 0;
+.title-decor {
+  background-color: var(--accent-color);
+  color: var(--subtitle-color);
+  font-weight: 700;
+  font-family: var(--main-font-family);
+  font-size: var(--main-font-size);
 }
 
-/* Текст подзаголовка */
-.heading__title-text {
-  max-width: 491px;
-  width: 100%;
-  color: var(--main-title-decor);
-  font-weight: var(--main-text-weight-bold);
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-}
-
-/* Стили для выделенного жирного текста */
-.title__decor-bold {
-  color: var(--main-title-decor);
-  background-color: var(--header-text-decor);
-  font-weight: var(--main-text-weight-bold);
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-}
-
-/* Стили для обычного выделенного текста */
-.title__decor {
-  color: var(--main-title-decor);
-  background-color: var(--main-title);
-  font-weight: normal;
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-}
-
-/* Основное содержимое страницы */
-.section__main {
-  margin: 60px 20px 0px;
+.main {
   display: flex;
   flex-direction: column;
-  gap: 80px;
+  gap: 50px;
+  padding-block: 40px;
+  padding-inline: 10px;
+  /*background-color: var(--bg-color); убрала после ревью */
 }
 
-/* Секции с контентом */
-.main__content-section {
+.section {
   display: grid;
-  grid-template-columns: min-content 2fr;
   gap: 20px;
 }
 
-/* Отдельные секции */
-.main__section {
+.section-block {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
-/* Табличная секция */
-.section-table {
-  display: grid;
-  grid-template-rows: repeat(2, min-content);
-  grid-template-columns: 1fr;
-  grid-auto-flow: column;
-  gap: 20px;
-  height: 100%;
+.section-title {
+  font-family: var(--main-font-family);
+  font-size: var(--main-font-size);
+  font-weight: 700;
+  line-height: 23.4px;
+  color: var(--subtitle-color_section);
 }
 
-/* Секция с таблицей статей */
-.main__article-section-table {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: minmax(min-content, auto);
-  gap: 20px;
+.section-text {
+  font-family: var(--main-font-family);
+  font-size: var(--main-font-size);
+  color: var(--text-color);
+  line-height: 23.4px;
+  font-weight: 400;
 }
 
-/* Заголовок табличной секции */
-.main__content-title-table {
-  grid-column: 1 / -1;
-  max-width: 315px;
-  width: 100%;
-  font-weight: var(--main-text-weight-bold);
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-  color: var(--header-text);
+.section-subtitle {
+  background-color: var(--accent-color);
+  color: var(--subtitle-color);
+  font-size: var(--main-font-size);
+  font-family: var(--main-font-family);
+  font-weight: 400;
+  line-height: 23.4px;
+  margin-block-start: 20px;
 }
 
-/* Заголовок секции */
-.main__section-title {
-  min-width: 315px;
-  grid-row: 1 / -1;
-  font-weight: var(--main-text-weight-bold);
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-  color: var(--header-text);
-}
-
-/* Текст статьи */
-.main__article-text {
-  margin-top: 10px;
-  font-weight: var(--main-text-weight);
-  font-size: var(--main-text-size);
-  line-height: var(--main-text-lh);
-}
-
-/* Ссылки в тексте */
-.main__article-text-link {
-  text-shadow: 1px 1px 0 var(--main-title);
+.text-link {
   text-decoration: none;
-  color: var(--main-text);
-  position: relative;
+  text-shadow: 2px 2px 0 var(--accent-color);
 }
 
-/* Эффект подчеркивания при наведении на ссылку */
-.main__article-text-link:hover::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 1px;
-  width: 100%;
-  height: 1px;
-  background-color: currentColor;
+.text-link:hover {
+  border-block-end: 1px solid var(--text-color);
 }
 
-/* Эффект для ссылки при фокусе */
-.main__article-text-link:focus {
+.text-link:focus {
   outline: none;
-  border: var(--link-hover);
 }
 
-/* Галерея */
-.gallery {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.text-link:focus-visible {
+  outline: 1px solid var(--text-color);
 }
 
-/* Изображения в галерее */
-.gallery__image {
+.images__section {
+  display: grid;
+  grid-template-rows: auto;
+  gap: 10px;
+}
+
+.image {
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* Список изображений */
-.gallery__list {
-  margin: 0;
-  margin-bottom: 60px;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-auto-flow: row dense;
-  gap: 20px;
-}
-
-/* Позиционирование изображения заката */
-.sunset {
-  grid-column: 1 / 3;
-}
-
-/* Позиционирование изображения мороженого */
-.ice-cream {
-  grid-column: 3;
-  grid-row: 1 /3;
-}
-
-/* Позиционирование изображения кассеты */
-.tape {
-  grid-column: 1;
-  grid-row: 2 / 5;
-}
-
-/* Позиционирование изображения улицы */
-.street {
-  grid-column: 2 / 4;
-  grid-row: 3 / 5;
-}
-
-/* Подвал сайта */
 .footer {
   display: flex;
-  height: 100vh;
-  min-height: 668px;
+  position: relative;
   justify-content: center;
+  align-items: center;
+  block-size: max(668px, 100vh); /* new2 */
+  padding: 10px;
+  /*background-color: var(--bg-color); убрала после ревью */
 }
 
-/* Заголовок в подвале */
 .footer__title {
-  display: flex;
-  font-size: var(--de-text-size);
-  text-shadow: 2px 2px 0 var(--main-title);
-  color: var(--footer-title);
-  font-weight: var(--main-text-weight-bold);
-  line-height: 129.53px;
-  align-self: center;
+  color: var(--title-color);
+  font-size: var(--main-font-size-title);
+  font-weight: 700;
+  line-height: 83%;
+  text-shadow: 2px 2px 0 var(--title-shadow);
 }
 
-/* Адаптивные стили для планшетов (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-  /* Меню для планшетов */
-  .header__theme-menu {
-    display: flex;
-    justify-self: end;
-    align-items: center;
-    margin-right: 20px;
-  }
-
-  /* Вертикальное меню */
-  .header__theme-menu-list {
-    flex-direction: column;
-  }
-
-  /* Размер заголовка */
-  h1 {
-    line-height: 99px;
-  }
-
-  /* Размер подзаголовка */
-  .heading__title-text {
-    max-width: 364px;
-    height: min-content;
-  }
-
-  /* Размер заголовка секции */
-  .main__section-title {
-    min-width: 236px;
-  }
-
-  /* Изменение таблицы статей */
-  .main__article-section-table {
-    grid-template-columns: none;
-    grid-template-rows: 1fr;
-    grid-auto-flow: row;
-  }
-
-  /* Размер заголовка таблицы */
-  .main__content-title-table {
-    max-width: 236px;
-  }
-
-  /* Размер заголовка в подвале */
-  .footer__title {
-    line-height: 99px;
-  }
-}
-
-/* Адаптивные стили для мобильных устройств (до 767px) */
-@media (max-width: 767px) {
-  /* Шапка на мобильных */
+@media (width >=768px) {
   .header {
-    padding: 10px;
+    grid-template-columns: 1fr min-content 364px;
+    padding: 20px;
   }
-
-  /* Позиционирование REC */
-  .header__rec {
-    margin: 10px 19px 0 0;
-  }
-
-  /* Меню на мобильных */
-  .header__theme-menu-list {
-    align-items: end;
-    flex-direction: column;
-    margin: 0;
-  }
-  
-  /* Позиционирование меню */
-  .header__theme-menu {
-    display: flex;
-    justify-self: end;
-    align-items: center;
-  }
-
-  /* Размер заголовка */
-  h1 {
-    line-height: 95.7px;
-    font-size: var(--mb-text-size);
-  }
-
-  /* Позиционирование подзаголовка */
-  .heading__title-content {
-    justify-self: start;
-    margin: 0;
-  }
-
-  /* Размер подзаголовка */
-  .heading__title-text {
-    max-width: 355px;
-    height: min-content;
-  }
-
-  /* Изменение сетки секций */
-  .main__content-section {
-    grid-template-columns: none;
-  }
-
-  /* Размер декоративных уголков */
   .decorated-zone::before {
-    margin: 10px;
+    top: 20px;
+    right: 20px;
   }
-
   .decorated-zone::after {
-    margin: 10px;
+    bottom: 20px;
+    left: 20px;
+  }
+  .rec {
+    top: 20px;
+    right: 20px;
   }
 
-  /* Основное содержимое */
-  .section__main {
-    margin: 40px 10px 0;
-    gap: 50px;
+  .header__theme-menu {
+    grid-column: 3 / 3;
+    margin-top: 161px;
+  }
+  .header__title {
+    font-size: var(--font-size-standart);
+    grid-column: span 3;
+    margin-inline-start: -20px;
+  }
+  .header__description {
+    grid-column: 3 / 3;
+    justify-self: end;
+    margin: 157px 0px;
+    top: 5px; /* new 2 */
+    position: relative;
+  }
+  .main {
+    gap: 80px;
+    padding-block: 60px;
+    padding-inline: 20px;
+  }
+  .section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .section-block {
+    grid-column: 2 / 4;
+  }
+  .reasons-title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+  .reasons-block {
+    grid-column: 1 / 4;
+  }
+  .advices-title {
+    grid-column: 1 / 2;
+  }
+  .advices-block {
+    grid-column: 2 / 4;
+    inline-size: 472px;
+    position: relative;
+    left: 7px;
+  }
+  .section:last-child {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 20px;
+    grid-template-areas:
+    "title title title"
+    "sunset sunset ice-cream"
+    "tape books ice-cream"
+    "tape street street";
+  }
+  .image {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 
-  /* Табличная секция */
-  .section-table {
-    min-width: 355px;
+  .image-sunset {
+    grid-area: sunset;
   }
 
-  /* Заголовок секции */
-  .main__section-title {
-    min-width: 355px;
+  .image__ice-cream {
+    grid-area: ice-cream;
   }
 
-  /* Заголовок таблицы */
-  .main__content-title-table {
-    max-width: 355px;
+  .image-tape {
+    grid-area: tape;
   }
 
-  /* Изменение таблицы статей */
-  .main__article-section-table {
-    grid-template-columns: none;
-    grid-template-rows: 1fr;
-    grid-auto-flow: row;
+  .image-books {
+    grid-area: books;
   }
 
-  /* Галерея */
-  .gallery {
-    gap: 10px;
+  .image-street {
+    grid-area: street;
   }
 
-  /* Список изображений */
-  .gallery__list {
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .section:last-child .title-decor {
+    grid-area: title;
   }
 
-  /* Порядок изображений в галерее */
-  .books {
-    order: 3;
-  }
-
-  .tape {
-    order: 2;
-  }
-
-  .street {
-    order: 4;
-  }
-
-  /* Заголовок в подвале */
   .footer__title {
-    line-height: 95.7px;
-    font-size: var(--mb-text-size);
+    font-size: var(--font-size-standart);
   }
+}
+
+
+@media (width > 768px) {
+  .advices-block {
+    inline-size: fit-content;
+  }
+}
+
+@media (width >= 1024px) {
+
+  .header {
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+  }
+
+  .header__theme-menu {
+    grid-column: span 4;
+    grid-row: 1 / 3; /* new */
+    justify-self: center;
+    align-self: start;
+    margin-top: 0px;
+  }
+
+  .header__title {
+    min-inline-size: 759px; /* new */
+  }
+  .header__description {
+    grid-column: span 4;
+    justify-self: end;
+    margin: 110px 0px;
+    inline-size: 491px;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .section-reasons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+     grid-template-rows: auto;
+    gap: 10px;
+  }
+
+  .reasons-title {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 10px;
+  }
+
+  /*.reasons-block {
+    grid-row: 2;
+  } */
+
+  .reasons-block:nth-of-type(1) {
+    grid-column: 1;
+  }
+  .reasons-block:nth-of-type(2) {
+    grid-column: 2;
+  }
+  .reasons-block:nth-of-type(3) {
+    grid-column: 3;
+  }
+
+  .advices-block {
+   inline-size: fit-content;
+   left: auto;
+  }
+
 }
