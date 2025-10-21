@@ -18,10 +18,12 @@
   display: grid;
   position: relative;
   grid-template-columns: 1fr;
-  grid-template-rows: 10px 1fr min-content 1fr 10px;
+  grid-template-rows: auto; /*repeat(3, 1fr);*/
+  grid-auto-rows: min-content; 
   padding: 10px;
-  min-height: 668px; 
-  height: 100vh; 
+  /*height: 100vh;*/ 
+  align-content: space-between;
+  block-size: max(668px, 100vh);
 }
 
 .decorated-zone::after,
@@ -47,8 +49,8 @@
 }
 
 .rec {
+  display: none;
   position: absolute;
-  display: inline-block;
   text-transform: uppercase;
   top: 10px;
   right: 10px;
@@ -131,7 +133,9 @@
   font-weight: 700;
   line-height: 23.4px;
   height: min-content;
-  max-inline-size: max(50% 355px);
+  /*max-inline-size: min(50%, 355px);
+  width: 100%;*/
+  inline-size: clamp(355px, 50%, 50%);
   margin: 55px 0px 56px 0px;
   top: 0;
 }
@@ -148,8 +152,8 @@
   display: flex;
   flex-direction: column;
   gap: 50px;
-  padding-block: 60px;
-  padding-inline: 20px;
+  padding-block: 40px;
+  padding-inline: 10px;
   position: relative;
   z-index: 1;
 }
@@ -157,6 +161,11 @@
 .section {
   display: grid;
   gap: 20px;
+}
+
+.reasons-blocks {
+  display: grid;
+  gap: 20px; 
 }
 
 .section-block {
@@ -182,13 +191,13 @@
 }
 
 .section-subtitle {
-  background-color: var(--accent-color);
+  font-weight: 400;
+  margin-block-start: 20px;
+  /*background-color: var(--accent-color);
   color: var(--subtitle-color);
   font-size: var(--main-font-size);
   font-family: var(--main-font-family);
-  font-weight: 400;
-  line-height: 23.4px;
-  margin-block-start: 20px;
+  line-height: 23.4px;*/
 }
 
 .text-link {
@@ -226,7 +235,6 @@
   justify-content: center;
   align-items: center;
   block-size: max(668px, 100vh);
-  padding: 10px;
 }
 
 .footer__title {
@@ -237,69 +245,107 @@
   text-shadow: 2px 2px 0 var(--title-shadow);
 }
 
+
+/*ADAPTIVE*/
+
+
 @media (width >=768px) {
+
   .header {
-    grid-template-columns: 1fr min-content 364px;
+    /*grid-template-columns: 1fr min-content 1fr;
+    grid-template-rows: 1fr min-content 1fr;
     padding: 20px;
+    min-height: 1024px;*/
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 100px 1fr;
     min-height: 1024px;
+    padding: 20px;
+    gap: 0;
   }
+
   .decorated-zone::before {
     top: 20px;
     right: 20px;
   }
+
   .decorated-zone::after {
     bottom: 20px;
     left: 20px;
   }
+
   .rec {
     top: 20px;
     right: 20px;
   }
 
   .header__theme-menu {
-    grid-column: 3 / 3;
-    margin-top: 161px;
+    /*grid-column: span 4;
+    grid-row: 1 / 3;
+    justify-self: end;
+    align-self: end;
+    margin-top: 46px;*/
+
+    grid-column: span 3;
+    grid-row: 1;
+    align-self: center;
+    margin-block-start: 0;
   }
+
   .header__title {
     font-size: var(--font-size-standart);
     grid-column: span 3;
+    grid-row: 2;
+    align-self: center;
+    justify-self: start;
+    margin: 0;
     margin-inline-start: -20px;
   }
+
   .header__description {
     grid-column: 3 / 3;
-    justify-self: end;
-    margin: 157px 0px;
-    top: 5px;
-    position: relative;
+    grid-row: 3 / 3;
+    align-self: center;
+    max-inline-size: 364px;
+    inline-size: 100%;
   }
+
   .main {
     gap: 80px;
     padding-block: 60px;
     padding-inline: 20px;
   }
+
   .section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
+
   .section-block {
     grid-column: 2 / 4;
   }
+
   .reasons-title {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
   }
+
   .reasons-block {
     grid-column: 1 / 4;
   }
+
   .advices-title {
     grid-column: 1 / 2;
   }
+
   .advices-block {
     grid-column: 2 / 4;
     inline-size: 472px;
-    position: relative;
-    left: 7px;
+    margin-left: 7px;
   }
+
   .section:last-child {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -311,6 +357,7 @@
     "tape books ice-cream"
     "tape street street";
   }
+
   .image {
     object-fit: cover;
     width: 100%;
@@ -341,6 +388,10 @@
     grid-area: title;
   }
 
+  .footer {
+    block-size: max(1024px, 100vh);
+  }
+
   .footer__title {
     font-size: var(--font-size-standart);
   }
@@ -350,10 +401,12 @@
 @media (width > 768px) {
   .advices-block {
     inline-size: fit-content;
+    margin-inline-start: 0;
   }
 }
 
 @media (width >= 1024px) {
+
   .header {
     min-height: 768px;
     grid-template-columns: 2fr 1fr 1fr 2fr;
@@ -361,52 +414,73 @@
 
   .header__theme-menu {
     grid-column: span 4;
-    grid-row: 1 / 3;
     justify-self: center;
     align-self: start;
     margin-top: 0px;
   }
 
   .header__title {
-    min-inline-size: 759px;
+    max-width: 759px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: visible;
+    margin-inline-start: -21px;
   }
+
   .header__description {
     grid-column: span 4;
     justify-self: end;
-    margin: 110px 0px;
-    inline-size: 491px;
+    max-inline-size: 491px;
+    inline-size: 100%;
+    margin-block-start: 70px;
   }
 
   .header__theme-menu-list {
     flex-direction: row;
     gap: 10px;
   }
+
+  .rec {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: block;
+  }
+
   .section-reasons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-     grid-template-rows: auto;
-    gap: 10px;
+    grid-template-rows: auto;
   }
 
   .reasons-title {
     grid-column: 1;
     grid-row: 1;
-    margin-bottom: 10px;
   }
 
-  .reasons-block:nth-of-type(1) {
+  .reasons-block--first {
     grid-column: 1;
   }
-  .reasons-block:nth-of-type(2) {
+  .reasons-block--second {
     grid-column: 2;
   }
-  .reasons-block:nth-of-type(3) {
+  .reasons-block--third {
     grid-column: 3;
   }
 
   .advices-block {
    inline-size: fit-content;
-   left: auto;
+   margin-inline-start: 0;
   }
 
+  .footer {
+    block-size: max(768px, 100vh);
+  }
+  /*.footer__title {
+   font-size: var(--font-size-standart);
+   justify-self: center;
+   align-self: center;
+   max-inline-size: 759px;
+   margin-inline: auto;
+  }*/
 }
