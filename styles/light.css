@@ -36,4 +36,12 @@
     --decorated-zone-hover: rgba(50, 49, 45, 0.4);
     --decorated: #353430;
   }
+
+  .theme-auto .rec {
+    display: none;
+  }
+
+  .theme-light .rec {
+    display: none;
+  }
 }

@@ -163,9 +163,27 @@
   gap: 20px;
 }
 
-.reasons-blocks {
+.section-reasons {
   display: grid;
-  gap: 20px; 
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.reasons__container {
+  display: grid;
+  gap: 20px;
+}
+
+.reasons-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reasons__container .reasons-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .section-block {
@@ -256,9 +274,6 @@
     grid-template-rows: 1fr min-content 1fr;
     padding: 20px;
     min-height: 1024px;*/
-
-    position: relative;
-    display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 100px 1fr;
     min-height: 1024px;
@@ -299,7 +314,6 @@
     grid-column: span 3;
     grid-row: 2;
     align-self: center;
-    justify-self: start;
     margin: 0;
     margin-inline-start: -20px;
   }
@@ -319,7 +333,6 @@
   }
 
   .section {
-    display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -334,6 +347,22 @@
 
   .reasons-block {
     grid-column: 1 / 4;
+  }
+
+  .section-reasons {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: start;
+  }
+
+  .reasons-title {
+    grid-column: 1 / 2;
+  }
+
+  .reasons__container {
+    grid-column: 1 / 4;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
   }
 
   .advices-title {
@@ -359,7 +388,6 @@
   }
 
   .image {
-    object-fit: cover;
     width: 100%;
     height: 100%;
   }
@@ -422,7 +450,7 @@
   .header__title {
     max-width: 759px;
     width: 100%;
-    white-space: nowrap;
+    min-width: max-content;
     overflow: visible;
     margin-inline-start: -21px;
   }
@@ -431,19 +459,14 @@
     grid-column: span 4;
     justify-self: end;
     max-inline-size: 491px;
-    inline-size: 100%;
     margin-block-start: 70px;
   }
 
   .header__theme-menu-list {
     flex-direction: row;
-    gap: 10px;
   }
 
   .rec {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: block;
   }
 
@@ -458,20 +481,14 @@
     grid-row: 1;
   }
 
-  .reasons-block--first {
-    grid-column: 1;
-  }
-  .reasons-block--second {
-    grid-column: 2;
-  }
-  .reasons-block--third {
-    grid-column: 3;
+  .reasons__container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
   }
 
-  .advices-block {
-   inline-size: fit-content;
-   margin-inline-start: 0;
-  }
+    .reasons-block:nth-child(1) { grid-column: 1; }
+    .reasons-block:nth-child(2) { grid-column: 2; }
+    .reasons-block:nth-child(3) { grid-column: 3; }
 
   .footer {
     block-size: max(768px, 100vh);

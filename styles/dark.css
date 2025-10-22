@@ -22,10 +22,6 @@
   display: block;
 }
 
-.theme-auto .rec {
-  display: none;
-}
-
-.theme-light .rec {
-  display: none;
+ .theme-auto .rec {
+   display: block;
 }
